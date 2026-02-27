@@ -1,0 +1,23 @@
+import express from "express"
+import authRoutes from "./routes/authRoutes"
+import messageRoutes from "./routes/messageRoutes"
+import chatRoutes from "./routes/chatRoutes"
+import userRoutes from "./routes/userRoutes"
+
+const app = express() 
+
+app.use(express.json()); // parses incoming json request bodies and makes 
+// them available as req. body in your rout handlers 
+
+
+app.get("/health" , (req, res) => {
+  res.json({ status: "ok" , message: "Hello World"})
+})
+
+// middleware 
+app.use("/api/auth" ,authRoutes)
+app.use("/api/chats" ,messageRoutes)
+app.use("/api/messages" ,chatRoutes)
+app.use("/api/users" ,userRoutes)
+
+ export default app;
